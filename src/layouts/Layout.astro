@@ -1,0 +1,125 @@
+---
+import Discord from "../components/Discord.astro";
+import Logo from "../components/Logo.astro";
+import Twitter from "../components/Twitter.astro";
+type Props = {
+  title: string;
+};
+
+const { title } = Astro.props;
+
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <link
+      rel="preload"
+      href="/fonts/Belanosima.ttf"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/Nunito.ttf"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/Alata.ttf"
+      as="font"
+      crossorigin="anonymous"
+    />
+    <title>{title}</title>
+  </head>
+  <body class="relative overflow-hidden h-full flex flex-col items-center">
+    <div class="absolute top-0 w-full h-full">
+      <img
+        src="/background.png"
+        class="w-full h-full object-cover object-center"
+      />
+      <div class="bg-black/30 w-full h-full absolute top-0"></div>
+    </div>
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href="https://nouns.build/dao/ethereum/0x65e0fed751abca42bc82006f84e31f5cd95d6d66"
+      class="relative p-2 flex w-full justify-center bg-black text-white hover:bg-black/95 transition-colors"
+    >
+      Become a member →
+    </a>
+
+    <div class="relative max-w-[1920px] w-full h-full">
+      <header
+        class="z-40 absolute top-0 w-full flex justify-between items-center p-8"
+      >
+        <nav class="flex items-center gap-12">
+          <a href="/">
+            <Logo class="w-10 h-10" color="white" />
+          </a>
+          <div class="flex gap-4 text-white font-alata">
+            <a
+              href="/artwork"
+              style={{
+                "text-decoration": pathname === "/artwork" ? "underline" : "",
+              }}>Artwork</a
+            >
+            <a href="/proposals" target="_blank" rel="noopener noreferrer">
+              Proposals
+            </a>
+            <a href="/about" target="_blank" rel="noopener noreferrer">
+              About</a
+            >
+          </div>
+        </nav>
+        <div class="flex gap-4">
+          <a
+            href="https://twitter.com/arthausdao"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Twitter color="white" />
+          </a>
+          <a
+            href="https://discord.gg/tWAD4Ntb"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Discord color="white" />
+          </a>
+        </div>
+      </header>
+      <slot />
+    </div>
+  </body>
+</html>
+
+<style>
+  @font-face {
+    font-family: Belanosima;
+    font-weight: 400;
+    src: url(/fonts/Belanosima.ttf) format("truetype");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: Nunito;
+    font-weight: 400;
+    src: url(/fonts/Nunito.ttf) format("truetype");
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: Alata;
+    font-weight: 400;
+    src: url(/fonts/Alata.ttf) format("truetype");
+    font-display: swap;
+  }
+</style>

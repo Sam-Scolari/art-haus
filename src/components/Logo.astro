@@ -1,0 +1,22 @@
+---
+type Props = {
+  class?: string;
+  color?: string;
+};
+
+const props = Astro.props;
+---
+
+<svg
+  width="900"
+  height="600"
+  class={props.class}
+  viewBox="0 0 900 600"
+  fill="none"
+>
+  <path
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="M300 600V300H100V500H0V200H300V0H900V600H300ZM400 500V100H600V500H400Z"
+    fill={props.color ?? "black"}></path>
+</svg>

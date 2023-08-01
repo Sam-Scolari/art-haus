@@ -1,0 +1,45 @@
+---
+import Button from "./Button.astro";
+import Discord from "./Discord.astro";
+import Logo from "./Logo.astro";
+import Twitter from "./Twitter.astro";
+---
+
+<div
+  id="background"
+  class="z-50 w-full hidden h-full pointer-events-none bg-white absolute top-0 bg-[url(/tile.svg)] bg-repeat"
+>
+  <div class="absolute top-0 w-full flex justify-between items-center p-8">
+    <div class="flex items-center gap-12">
+      <Logo class="w-10 h-10" color="black" />
+      <div class="flex gap-4 text-black font-alata">
+        <p>Artwork</p>
+        <p>Proposals</p>
+        <p>About</p>
+      </div>
+    </div>
+    <div class="flex gap-4">
+      <Twitter color="black" />
+      <Discord color="black" />
+    </div>
+  </div>
+  <div
+    class="relative w-full h-full flex flex-col gap-14 justify-center items-center"
+  >
+    <p class="text-8xl text-black max-w-6xl text-center select-none">
+      Great ideas begin with a blank canvas
+    </p>
+    <Button>Explore</Button>
+  </div>
+</div>
+
+<script>
+  const background = document.getElementById("background");
+
+  if (background) {
+    addEventListener("mousemove", (e) => {
+      background.style.display = "flex";
+      background.style.clipPath = `circle(100px at ${e.clientX}px ${e.clientY}px)`;
+    });
+  }
+</script>
