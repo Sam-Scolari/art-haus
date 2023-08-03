@@ -2,14 +2,29 @@
 import BackgroundEffect from "../components/BackgroundEffect.astro";
 import Button from "../components/Button.astro";
 import Layout from "../layouts/Layout.astro";
+import { options, artwork } from "../layouts/Layout.astro";
 ---
 
 <Layout title="Art Haus">
   <div class="w-full h-full flex flex-col gap-14 justify-center items-center">
-    <h1 class="text-8xl text-white max-w-6xl text-center select-none">
+    <h1
+      class="text-8xl font-belanosima text-white max-w-6xl text-center select-none"
+    >
       Great ideas begin with a blank canvas
     </h1>
     <Button href="/artwork" outline>Explore</Button>
   </div>
+  <a
+    href={!options.useDefaultBackground && artwork.length > 0
+      ? artwork[0].artist
+      : "https://twitter.com/messhup"}
+    class="absolute left-8 bottom-8 text-gray font-alata"
+  >
+    {
+      !options.useDefaultBackground && artwork.length > 0
+        ? artwork[0].artist
+        : "Art by Messhup"
+    }
+  </a>
   <BackgroundEffect />
 </Layout>
