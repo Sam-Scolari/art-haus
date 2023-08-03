@@ -1,17 +1,24 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout, { artwork } from "../layouts/Layout.astro";
 ---
 
 <Layout title="Artwork">
   <div
     class="w-full h-full backdrop-blur-[64px] flex items-center justify-center"
   >
-    <div class="w-3/4 h-1/2">
-      <img
-        src="/background.png"
-        class="h-full rounded-2xl drop-shadow-2xl"
-        draggable={false}
-      />
+    <div class="w-full h-full overflow-y-scroll snap-mandatory snap-y">
+      {
+        artwork.map((art) => (
+          <div class="mx-64 flex items-center justify-center h-full snap-center">
+            <img
+              src={art.image}
+              class="h-1/2 rounded-2xl drop-shadow-2xl"
+              draggable={false}
+            />
+          </div>
+        ))
+      }
     </div>
   </div>
+  <img src="/arrow.svg" class="absolute left-1/2 bottom-20 w-6 h-6" />
 </Layout>

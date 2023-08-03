@@ -51,7 +51,7 @@ for (const { properties } of fetchArtwork.results as any) {
   });
 }
 
-console.log(artwork);
+artwork.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 const directory = path.join(process.cwd(), "cache");
 
