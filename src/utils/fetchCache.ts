@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import type { Options, Artwork } from "../../scripts/cache.js";
+import type { Options, Artwork, Artist } from "../../scripts/cache.js";
 
 export default function fetchCache() {
   return JSON.parse(
@@ -8,5 +8,6 @@ export default function fetchCache() {
   ) as {
     artwork: Artwork[];
     options: Options;
+    artists: Artist[];
   };
 }

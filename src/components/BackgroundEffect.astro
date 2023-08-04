@@ -7,8 +7,8 @@ import Twitter from "./Twitter.astro";
 ---
 
 <div
-  id="background"
-  class="z-50 w-full hidden h-full pointer-events-none bg-white absolute top-0 bg-[url(/tile.svg)] bg-repeat"
+  id="effect"
+  class="z-50 w-full flex h-full pointer-events-none bg-white absolute top-0 bg-[url(/tile.svg)] bg-repeat"
 >
   <div class="absolute top-0 w-full flex justify-between items-center p-8">
     <div class="flex items-center gap-12">
@@ -44,12 +44,18 @@ import Twitter from "./Twitter.astro";
 </div>
 
 <script>
-  const background = document.getElementById("background");
+  import gsap from "gsap";
 
-  if (background) {
+  const effect = document.getElementById("effect");
+
+  if (effect) {
+    effect.style.clipPath = "circle(0px at 0px 0px)";
     addEventListener("mousemove", (e) => {
-      background.style.display = "flex";
-      background.style.clipPath = `circle(100px at ${e.clientX}px ${e.clientY}px)`;
+      gsap.to(effect, {
+        duration: 0.4,
+        clipPath: `circle(100px at ${e.clientX}px ${e.clientY}px)`,
+        ease: "ease.out",
+      });
     });
   }
 </script>

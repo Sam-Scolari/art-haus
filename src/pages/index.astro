@@ -26,5 +26,28 @@ import { options, artwork } from "../layouts/Layout.astro";
         : "Art by Messhup"
     }
   </a>
+  <div
+    id="white"
+    class="z-[99999] w-full h-full fixed top-0 bg-white transition-opacity duration-500"
+  >
+  </div>
   <BackgroundEffect />
 </Layout>
+
+<script>
+  const background = document.getElementById("background");
+  const white = document.getElementById("white");
+
+  if (background && white) {
+    const image = new Image();
+    background.classList.forEach((c) => {
+      if (c.includes("url")) {
+        image.src = c.substring(8, c.length - 2);
+      }
+    });
+    image.onload = () => {
+      white.style.opacity = "0";
+      white.style.pointerEvents = "none";
+    };
+  }
+</script>

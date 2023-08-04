@@ -1,24 +1,84 @@
 ---
-import Layout, { artwork } from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import Layout, { artwork, artists } from "../layouts/Layout.astro";
 ---
 
 <Layout title="Artwork">
   <div
     class="w-full h-full backdrop-blur-[64px] flex items-center justify-center"
   >
-    <div class="w-full h-full overflow-y-scroll snap-mandatory snap-y">
+    <div
+      id="artwork"
+      class="w-full h-full overflow-y-scroll snap-mandatory snap-y"
+    >
       {
-        artwork.map((art) => (
-          <div class="mx-64 flex items-center justify-center h-full snap-center">
-            <img
-              src={art.image}
-              class="h-1/2 rounded-2xl drop-shadow-2xl"
-              draggable={false}
-            />
-          </div>
-        ))
+        artwork.map((art) => {
+          const artist = artists.find((artist) => artist.id === art.artist) ?? {
+            name: "",
+            link: "",
+            image: "",
+          };
+
+          const id = art.title.replaceAll(" ", "-").toLowerCase();
+
+          return (
+            <div
+              id={id}
+              class="mx-64 flex gap-32 justify-center items-center h-full snap-center"
+            >
+              <img
+                id={`${id}:image`}
+                src={art.image}
+                class="h-1/2 rounded-2xl drop-shadow-2xl"
+                draggable={false}
+              />
+              <div class="flex flex-col gap-6">
+                <h1 class="font-nunito text-white text-4xl">{art.title}</h1>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={artist.link}
+                  class="flex gap-3 items-center text-white font-nunito"
+                >
+                  <img src={artist.image} class="w-8 h-8 rounded-full" />
+                  {artist.name}
+                  <p class="text-gray font-nunito ml-2">{art.date}</p>
+                </a>
+                <p class="font-alata text-white mb-4">{art.description}</p>
+                <Button href={art.drop} newTab white>
+                  View Drop
+                </Button>
+              </div>
+            </div>
+          );
+        })
       }
     </div>
   </div>
-  <img src="/arrow.svg" class="absolute left-1/2 bottom-20 w-6 h-6" />
+  <img
+    src="/arrow.svg"
+    class="absolute left-1/2 bottom-20 w-6 h-6 animate-bounce"
+  />
 </Layout>
+
+<script>
+  const background = document.getElementById("background");
+  const artwork = document.getElementById("artwork");
+
+  if (background && artwork) {
+    artwork.addEventListener("scroll", () => {
+      const index = Math.round(artwork.scrollTop / artwork.clientHeight);
+
+      const image = document.getElementById(
+        `${artwork.children[index].id}:image`
+      );
+
+      if (
+        image &&
+        background.style.backgroundImage !== `url(${image.getAttribute("src")})`
+      ) {
+        background.style.backgroundImage = `url(${image.getAttribute("src")})`;
+      }
+    });
+  }
+</script>
