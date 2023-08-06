@@ -70,6 +70,15 @@ import Layout, { artwork, artists } from "../layouts/Layout.astro";
   const artwork = document.getElementById("artwork");
 
   if (background && artwork) {
+    const image = document.getElementById(`${artwork.children[0].id}:image`);
+
+    if (
+      image &&
+      background.style.backgroundImage !== `url(${image.getAttribute("src")})`
+    ) {
+      background.style.backgroundImage = `url(${image.getAttribute("src")})`;
+    }
+
     artwork.addEventListener("scroll", () => {
       const index = Math.round(artwork.scrollTop / artwork.clientHeight);
 
