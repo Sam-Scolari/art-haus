@@ -8,7 +8,7 @@ import Twitter from "./Twitter.astro";
 
 <div
   id="effect"
-  class="z-50 w-full flex h-full pointer-events-none bg-white absolute top-0 bg-[url(/tile.svg)] bg-repeat"
+  class="z-50 max-md:hidden w-full flex h-full pointer-events-none bg-white absolute top-0 bg-[url(/tile.svg)] bg-repeat"
 >
   <div class="absolute top-0 w-full flex justify-between items-center p-8">
     <div class="flex items-center gap-12">
@@ -51,14 +51,14 @@ import Twitter from "./Twitter.astro";
   if (effect) {
     effect.style.clipPath = "circle(0px at 0px 0px)";
 
-    if (window.innerWidth > 768) {
-      addEventListener("mousemove", (e) => {
-        gsap.to(effect, {
-          duration: 0.4,
-          clipPath: `circle(100px at ${e.clientX}px ${e.clientY}px)`,
-          ease: "ease.out",
-        });
+    // if (window.innerWidth > 768) {
+    addEventListener("mousemove", (e) => {
+      gsap.to(effect, {
+        duration: 0.4,
+        clipPath: `circle(100px at ${e.clientX}px ${e.clientY}px)`,
+        ease: "ease.out",
       });
-    }
+    });
   }
+  // }
 </script>
