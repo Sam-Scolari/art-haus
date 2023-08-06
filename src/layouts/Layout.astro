@@ -1,6 +1,7 @@
 ---
 import Discord from "../components/Discord.astro";
 import Logo from "../components/Logo.astro";
+import Menu from "../components/Menu.astro";
 import Twitter from "../components/Twitter.astro";
 import fetchCache from "../utils/fetchCache";
 import dotenv from "dotenv";
@@ -77,7 +78,7 @@ const banner = {
           target="_blank"
           rel="noopener noreferrer"
           href={banner.url}
-          class="relative p-2 flex w-full justify-center bg-black text-white hover:bg-black/95 transition-colors"
+          class="z-20 relative p-2 flex w-full justify-center bg-black text-white hover:bg-black/95 transition-colors"
         >
           {banner.message}
         </a>
@@ -93,7 +94,7 @@ const banner = {
           <a href="/">
             <Logo class="w-10 h-10" color="white" />
           </a>
-          <div class="flex gap-4 text-white font-alata">
+          <div class="flex gap-4 text-white font-alata max-[500px]:hidden">
             <a
               href="/artwork"
               style={{
@@ -108,13 +109,14 @@ const banner = {
             >
           </div>
         </nav>
-        <div class="flex gap-4">
+        <div class="flex items-center gap-4">
           <a href="/twitter" target="_blank" rel="noopener noreferrer">
             <Twitter color="white" />
           </a>
           <a href="/discord" target="_blank" rel="noopener noreferrer">
             <Discord color="white" />
           </a>
+          <Menu />
         </div>
       </header>
       <slot />

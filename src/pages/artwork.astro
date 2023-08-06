@@ -4,12 +4,11 @@ import Layout, { artwork, artists } from "../layouts/Layout.astro";
 ---
 
 <Layout title="Artwork">
-  <div
-    class="w-full h-full backdrop-blur-[64px] flex items-center justify-center"
-  >
+  <div class="w-full h-full flex items-center justify-center">
+    <div class="fixed w-screen h-full left-0 top-0 backdrop-blur-[64px]"></div>
     <div
       id="artwork"
-      class="w-full h-full overflow-y-scroll snap-mandatory snap-y"
+      class="z-10 w-full h-full overflow-y-scroll snap-mandatory snap-y"
     >
       {
         artwork.map((art) => {
@@ -42,11 +41,11 @@ import Layout, { artwork, artists } from "../layouts/Layout.astro";
                 >
                   <img src={artist.image} class="w-8 h-8 rounded-full" />
                   {artist.name}
-                  <p class="text-gray font-nunito ml-2">{art.date}</p>
+                  <p class="text-lightgray font-nunito ml-2">{art.date}</p>
                 </a>
-                <p class="font-alata text-white mb-4">{art.description}</p>
+                <p class="font-alata text-lightgray mb-4">{art.description}</p>
                 <Button href={art.drop} newTab white>
-                  View Drop
+                  View
                 </Button>
               </div>
             </div>
@@ -54,11 +53,16 @@ import Layout, { artwork, artists } from "../layouts/Layout.astro";
         })
       }
     </div>
-  </div>
-  <img
-    src="/arrow.svg"
-    class="absolute left-1/2 bottom-20 w-6 h-6 animate-bounce"
-  />
+  </div>{
+    artwork.length > 1 ? (
+      <img
+        src="/arrow.svg"
+        class="absolute left-1/2 bottom-20 w-6 h-6 animate-bounce arrow"
+      />
+    ) : (
+      ""
+    )
+  }
 </Layout>
 
 <script>

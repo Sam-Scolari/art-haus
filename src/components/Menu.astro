@@ -1,0 +1,81 @@
+---
+import Logo from "./Logo.astro";
+import { options } from "../layouts/Layout.astro";
+
+const pathname = new URL(Astro.request.url).pathname;
+---
+
+<img
+  id="openButton"
+  src="/menu.svg"
+  alt="Open the menu"
+  class="w-8 h-8 ml-4 hidden max-lg:flex"
+/>
+
+<div
+  id="menu"
+  style={{ top: options.showBanner ? "2.5rem" : "0px" }}
+  class="fixed opacity-0 pointer-events-none top-10 left-0 w-full h-full flex flex-col p-8 backdrop-blur-xl transition-opacity z-50"
+>
+  <div class="w-full flex justify-between items-center">
+    <a
+      href="/"
+      draggable={false}
+      class="flex gap-6 group items-center cursor-pointer select-none"
+    >
+      <Logo class="w-10 h-10" color="white" />
+      <p class="text-white font-nunito text-4xl select-none">Art Haus</p>
+    </a>
+    <div class="w-8 h-8 flex items-center justify-center">
+      <img
+        id="closeButton"
+        src="/close.svg"
+        alt="Close the menu"
+        class="w-6 h-6"
+      />
+    </div>
+  </div>
+  <div class="h-full flex justify-center">
+    <div
+      class="h-full flex flex-col justify-center items-center gap-16 text-white font-belanosima text-4xl"
+    >
+      <a
+        href="/artwork"
+        style={{
+          "text-decoration": pathname === "/artwork" ? "underline" : "",
+        }}>Artwork</a
+      >
+      <a href="/proposals" target="_blank" rel="noopener noreferrer">
+        Proposals
+      </a>
+      <a href="/about" target="_blank" rel="noopener noreferrer"> About</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const menu = document.getElementById("menu");
+  const openButton = document.getElementById("openButton");
+  const closeButton = document.getElementById("closeButton");
+
+  function open() {
+    if (menu) {
+      document.documentElement.classList.add("overflow-y-hidden");
+      menu.classList.add("opacity-100", "pointer-events-auto");
+      menu.classList.remove("opacity-0", "pointer-events-none");
+    }
+  }
+
+  function close() {
+    if (menu) {
+      document.documentElement.classList.remove("overflow-y-hidden");
+      menu.classList.add("opacity-0", "pointer-events-none");
+      menu.classList.remove("opacity-100", "pointer-events-auto");
+    }
+  }
+
+  if (openButton && closeButton) {
+    openButton.addEventListener("click", open);
+    closeButton.addEventListener("click", close);
+  }
+</script>

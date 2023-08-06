@@ -9,7 +9,8 @@ module.exports = {
       transparent: "transparent",
       white: "#FAFAFA",
       black: "#0A0A0A",
-      gray: "#5B5B5B",
+      gray: "#7A7A7A",
+      lightgray: "#D0D0D0",
     },
     fontFamily: {
       belanosima: ["Belanosima"],
