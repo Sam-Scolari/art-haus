@@ -9,7 +9,7 @@ const pathname = new URL(Astro.request.url).pathname;
   id="openButton"
   src="/menu.svg"
   alt="Open the menu"
-  class="z-10 w-8 h-8 ml-4 hidden max-lg:flex cursor-pointer"
+  class="z-10 w-8 h-8 ml-4 hidden max-lg:flex"
 />
 
 <div
@@ -76,8 +76,6 @@ const pathname = new URL(Astro.request.url).pathname;
 
   if (openButton && closeButton) {
     openButton.addEventListener("click", open);
-    openButton.addEventListener("touchstart", open);
     closeButton.addEventListener("click", close);
-    closeButton.addEventListener("touchstart", close);
   }
 </script>
