@@ -8,7 +8,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 type Props = {
-  title: string;
+  title?: string;
 };
 
 const { title } = Astro.props;
@@ -27,7 +27,10 @@ export const banner = {
 <html lang="en" class="h-full">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta
+      name="description"
+      content="Art Haus is a collective arts patronage. Daily auction proceeds commission nounish art. Proposals are submitted to deploy these CC0 works as NFT drops, aka droposals. Minting proceeds are split between artist and treasury. DAO artwork begins as a blank canvas. Traits come later from layers of commissioned works. Curation is key."
+    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="generator" content={Astro.generator} />
