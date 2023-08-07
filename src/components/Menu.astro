@@ -76,8 +76,8 @@ const pathname = new URL(Astro.request.url).pathname;
 
   if (openButton && closeButton) {
     openButton.addEventListener("click", open);
-    // openButton.addEventListener("touchstart", open);
+    openButton.addEventListener("touchstart", open);
     closeButton.addEventListener("click", close);
-    // closeButton.addEventListener("touchstart", close);
+    closeButton.addEventListener("touchstart", close);
   }
 </script>
