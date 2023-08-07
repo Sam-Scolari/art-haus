@@ -4,19 +4,22 @@ type Props = {
   outline?: boolean;
   white?: boolean;
   newTab?: boolean;
+  class?: string;
 };
 
-const { href, outline, newTab, white } = Astro.props;
+const props = Astro.props;
 ---
 
 <a
-  href={href}
-  target={newTab ? "_blank" : ""}
-  rel={newTab ? "noopener noreferrer" : ""}
-  class={`font-nunito px-8 py-3 text-lg rounded-full w-fit ${
-    outline
+  href={props.href}
+  target={props.newTab ? "_blank" : ""}
+  rel={props.newTab ? "noopener noreferrer" : ""}
+  class={`font-nunito px-8 py-3 text-lg rounded-full flex items-center justify-center w-fit ${
+    props.class
+  } ${
+    props.outline
       ? "text-white shadow-[inset_0px_0px_0px_3px_white]"
-      : white
+      : props.white
       ? "text-black bg-white"
       : "text-white bg-black"
   }`}

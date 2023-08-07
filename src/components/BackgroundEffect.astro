@@ -1,5 +1,5 @@
 ---
-import { artwork, options } from "../layouts/Layout.astro";
+import { artwork, options, banner } from "../layouts/Layout.astro";
 import Button from "./Button.astro";
 import Discord from "./Discord.astro";
 import Logo from "./Logo.astro";
@@ -8,39 +8,49 @@ import Twitter from "./Twitter.astro";
 
 <div
   id="effect"
-  class="z-50 max-md:hidden w-full flex h-full pointer-events-none bg-white absolute top-0 bg-[url(/tile.svg)] bg-repeat"
+  class="z-50 max-md:hidden w-full flex justify-center h-full pointer-events-none bg-white fixed left-0 top-0 bg-[url(/tile.svg)] bg-repeat"
 >
-  <div class="absolute top-0 w-full flex justify-between items-center p-8">
-    <div class="flex items-center gap-12">
-      <Logo class="w-10 h-10" color="black" />
-      <div class="flex gap-4 text-black font-alata">
-        <p>Artwork</p>
-        <p>Proposals</p>
-        <p>About</p>
+  <div class="absolute top-0 w-full flex items-center flex-col">
+    {options.showBanner ? <div class="h-10" /> : ""}
+    <div class="flex justify-between items-center w-full p-8 max-w-[1920px]">
+      <div class="flex items-center gap-12">
+        <Logo class="w-10 h-10" color="black" />
+        <div class="flex gap-4 text-black font-alata">
+          <a href="/artwork" class="hover:underline pointer-events-auto"
+            >Artwork</a
+          >
+          <p>Proposals</p>
+          <p>About</p>
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <Twitter color="black" />
+        <Discord color="black" />
       </div>
     </div>
-    <div class="flex gap-4">
-      <Twitter color="black" />
-      <Discord color="black" />
-    </div>
   </div>
-  <div
-    class="relative w-full h-full flex flex-col gap-14 justify-center items-center"
-  >
-    <p
-      class="text-8xl max-2xl:text-7xl max-md:text-6xl max-sm:text-5xl px-16 max-sm:px-8 font-belanosima text-black max-w-6xl text-center select-none"
+  <div class="relative max-w-[1920px] w-full h-full">
+    <div
+      class="relative w-full h-full flex flex-col gap-14 justify-center items-center"
     >
-      Great ideas begin with a blank canvas
-    </p>
-    <Button>Explore</Button>
+      <p
+        class="text-8xl max-2xl:text-7xl max-md:text-6xl max-sm:text-5xl px-16 max-sm:px-8 font-belanosima text-black max-w-6xl text-center select-none"
+      >
+        Great ideas begin with a blank canvas
+      </p>
+      <Button>Explore</Button>
+    </div>
+    <a
+      href="https://bio.site/brandonjamesscott"
+      class="absolute hover:underline pointer-events-auto left-8 bottom-8 text-black font-alata"
+    >
+      {
+        !options.useDefaultBackground && artwork.length > 0
+          ? artwork[0].artist
+          : "Art by Brandon Mitghy"
+      }
+    </a>
   </div>
-  <p class="absolute left-8 bottom-8 text-black font-alata">
-    {
-      !options.useDefaultBackground && artwork.length > 0
-        ? artwork[0].artist
-        : "Art by Brandon Mitghy"
-    }
-  </p>
 </div>
 
 <script>
@@ -51,7 +61,6 @@ import Twitter from "./Twitter.astro";
   if (effect) {
     effect.style.clipPath = "circle(0px at 0px 0px)";
 
-    // if (window.innerWidth > 768) {
     addEventListener("mousemove", (e) => {
       gsap.to(effect, {
         duration: 0.4,
@@ -60,5 +69,4 @@ import Twitter from "./Twitter.astro";
       });
     });
   }
-  // }
 </script>

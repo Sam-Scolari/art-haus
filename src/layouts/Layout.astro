@@ -17,7 +17,7 @@ const pathname = new URL(Astro.request.url).pathname;
 
 export const { artwork, options, artists } = fetchCache();
 
-const banner = {
+export const banner = {
   message: "Become a member →",
   url: "/join",
 };
@@ -57,7 +57,7 @@ const banner = {
       as="font"
       crossorigin="anonymous"
     />
-    <title>{title}</title>
+    <title>Art Haus{title ? " - " : ""}{title}</title>
   </head>
   <body class="relative overflow-hidden h-full flex flex-col items-center">
     <div class="absolute top-0 w-full h-full">
@@ -72,23 +72,23 @@ const banner = {
       </div>
       <div class="bg-black/30 w-full h-full absolute top-0"></div>
     </div>
-    {
-      options.showBanner ? (
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={banner.url}
-          class="z-20 relative p-2 flex w-full justify-center bg-black text-white hover:bg-black/95 transition-colors"
-        >
-          {banner.message}
-        </a>
-      ) : (
-        ""
-      )
-    }
-    <div class="relative max-w-[1920px] w-full h-full">
-      <header
-        class="z-40 absolute top-0 w-full flex justify-between items-center p-8"
+    <header class="absolute top-0 w-full items-center flex flex-col">
+      {
+        options.showBanner ? (
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={banner.url}
+            class="z-[100] relative p-2 flex w-full justify-center bg-black text-white"
+          >
+            {banner.message}
+          </a>
+        ) : (
+          ""
+        )
+      }
+      <div
+        class="z-40 relative justify-between items-center w-full p-8 flex max-w-[1920px]"
       >
         <nav class="flex items-center gap-12">
           <a href="/">
@@ -99,7 +99,8 @@ const banner = {
               href="/artwork"
               style={{
                 "text-decoration": pathname === "/artwork" ? "underline" : "",
-              }}>Artwork</a
+              }}
+              class="hover:underline">Artwork</a
             >
             <a href="/proposals" target="_blank" rel="noopener noreferrer">
               Proposals
@@ -118,7 +119,9 @@ const banner = {
           </a>
           <Menu />
         </div>
-      </header>
+      </div>
+    </header>
+    <div class="relative max-w-[1920px] w-full h-full">
       <slot />
     </div>
   </body>
