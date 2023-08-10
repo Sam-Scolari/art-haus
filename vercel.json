@@ -6,11 +6,6 @@
       "permanent": true
     },
     {
-      "source": "/about",
-      "destination": "https://nouns.build/dao/ethereum/0x65e0fed751abca42bc82006f84e31f5cd95d6d66?tab=about",
-      "permanent": true
-    },
-    {
       "source": "/join",
       "destination": "https://nouns.build/dao/ethereum/0x65e0fed751abca42bc82006f84e31f5cd95d6d66",
       "permanent": true

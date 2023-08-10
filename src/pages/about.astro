@@ -1,0 +1,26 @@
+---
+import Button from "../components/Button.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="About">
+  <div
+    class="text-white text-center z-10 relative px-32 max-md:px-16 max-sm:px-8 w-full h-full flex flex-col gap-8 items-center justify-center"
+  >
+    <h1
+      class="font-belanosima text-6xl max-2xl:text-5xl max-md:text-4xl max-sm:text-3xl"
+    >
+      Art Haus is a collective arts patronage
+    </h1>
+    <p
+      class="w-1/2 max-xl:w-3/4 max-lg:w-5/6 max-md:w-full max-md:text-sm font-alata"
+    >
+      Daily auction proceeds commission nounish art. Proposals are submitted to
+      deploy these CC0 works as NFT drops, aka droposals. Minting proceeds are
+      split between artist and treasury. DAO artwork begins as a blank canvas.
+      Traits come later from layers of commissioned works. Curation is key.
+    </p>
+    <Button href="/discord">Learn more</Button>
+  </div>
+  <div class="backdrop-blur-[64px] fixed top-0 left-0 w-full h-full"></div>
+</Layout>
